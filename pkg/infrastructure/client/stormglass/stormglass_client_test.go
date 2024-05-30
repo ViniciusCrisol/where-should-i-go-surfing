@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/fixture"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/mock/infrastructure/httpclient"
@@ -37,7 +37,7 @@ func TestStormglassClient_FetchPoints(t *testing.T) {
 			points, err := stormglassClient.FetchPoints(100, 100)
 			assert.NoError(t, err)
 			assert.Equal(
-				t, app.Point{
+				t, point.Point{
 					Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.FixedZone("", 0)),
 					SwellDirection: 64.26, SwellHeight: 0.15, SwellPeriod: 3.89,
 					WaveDirection: 23.38, WaveHeight: 0.47,
@@ -45,7 +45,7 @@ func TestStormglassClient_FetchPoints(t *testing.T) {
 				}, points[0],
 			)
 			assert.Equal(
-				t, app.Point{
+				t, point.Point{
 					Time:           time.Date(2020, 04, 26, 01, 00, 00, 00, time.FixedZone("", 0)),
 					SwellDirection: 12.4, SwellHeight: 0.21, SwellPeriod: 3.67,
 					WaveDirection: 23.1, WaveHeight: 0.46,
@@ -69,7 +69,7 @@ func TestStormglassClient_FetchPoints(t *testing.T) {
 			points, err := stormglassClient.FetchPoints(100, 100)
 			assert.NoError(t, err)
 			assert.Equal(
-				t, app.Point{
+				t, point.Point{
 					Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.FixedZone("", 0)),
 					SwellDirection: 64.26, SwellHeight: 0.15, SwellPeriod: 3.89,
 					WaveDirection: 23.38, WaveHeight: 0.47,

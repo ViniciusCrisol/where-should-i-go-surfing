@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/infrastructure/httpclient"
 )
 
@@ -39,7 +39,7 @@ func NewStormglassClient(httpClient httpclient.HTTPClient, stormglassURL, stormg
 	}
 }
 
-func (client *StormglassClient) FetchPoints(lat, lng float64) ([]app.Point, error) {
+func (client *StormglassClient) FetchPoints(lat, lng float64) ([]point.Point, error) {
 	request, err := client.newFetchPointsRequest(lat, lng)
 	if err != nil {
 		return nil, err
@@ -114,21 +114,21 @@ func (client *StormglassClient) getFetchPointsResponse(request *http.Request) (F
 	return fetchPointsResponse, nil
 }
 
-func (client *StormglassClient) mapValidPoints(response FetchPointsResponse) []app.Point {
-	var points []app.Point
-	for _, point := range response.Points {
-		if point.IsValid() {
+func (client *StormglassClient) mapValidPoints(response FetchPointsResponse) []point.Point {
+	var points []point.Point
+	for _, responsePoint := range response.Points {
+		if responsePoint.IsValid() {
 			points = append(
 				points,
-				app.Point{
-					Time:           point.Time,
-					SwellDirection: point.SwellDirection["noaa"],
-					SwellHeight:    point.SwellHeight["noaa"],
-					SwellPeriod:    point.SwellPeriod["noaa"],
-					WaveDirection:  point.WaveDirection["noaa"],
-					WaveHeight:     point.WaveHeight["noaa"],
-					WindDirection:  point.WindDirection["noaa"],
-					WindSpeed:      point.WindSpeed["noaa"],
+				point.Point{
+					Time:           responsePoint.Time,
+					SwellDirection: responsePoint.SwellDirection["noaa"],
+					SwellHeight:    responsePoint.SwellHeight["noaa"],
+					SwellPeriod:    responsePoint.SwellPeriod["noaa"],
+					WaveDirection:  responsePoint.WaveDirection["noaa"],
+					WaveHeight:     responsePoint.WaveHeight["noaa"],
+					WindDirection:  responsePoint.WindDirection["noaa"],
+					WindSpeed:      responsePoint.WindSpeed["noaa"],
 				},
 			)
 		}
