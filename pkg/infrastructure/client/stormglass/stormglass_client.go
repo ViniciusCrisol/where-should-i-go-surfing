@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/infrastructure/httpclient"
@@ -40,7 +41,8 @@ func NewStormglassClient(httpClient httpclient.HTTPClient, stormglassURL, stormg
 }
 
 func (client *StormglassClient) FetchPoints(lat, lng float64) ([]point.Point, error) {
-	request, err := client.newFetchPointsRequest(lat, lng)
+	now := time.Now()
+	request, err := client.newFetchPointsRequest(lat, lng, now, now.AddDate(0, 0, 1))
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +53,7 @@ func (client *StormglassClient) FetchPoints(lat, lng float64) ([]point.Point, er
 	return client.mapValidPoints(response), nil
 }
 
-func (client *StormglassClient) newFetchPointsRequest(lat, lng float64) (*http.Request, error) {
+func (client *StormglassClient) newFetchPointsRequest(lat, lng float64, start, end time.Time) (*http.Request, error) {
 	fetchPointsURL, err := url.Parse(client.stormglassURL)
 	if err != nil {
 		slog.Error(
@@ -64,6 +66,8 @@ func (client *StormglassClient) newFetchPointsRequest(lat, lng float64) (*http.R
 	query := fetchPointsURL.Query()
 	query.Set("lat", fmt.Sprintf("%f", lat))
 	query.Set("lng", fmt.Sprintf("%f", lng))
+	query.Set("start", fmt.Sprintf("%d", start.Unix()))
+	query.Set("end", fmt.Sprintf("%d", end.Unix()))
 	query.Set("source", client.stormglassSource)
 	query.Set("params", client.stormglassParams)
 	fetchPointsURL.RawQuery = query.Encode()

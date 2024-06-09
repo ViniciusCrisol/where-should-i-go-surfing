@@ -20,7 +20,6 @@ func NewBeachForecastService(stormglassClient StormglassClient) *BeachForecastSe
 func (service *BeachForecastService) GetBeachForecasts(beaches []entity.Beach) ([]timeforecast.TimeForecast, error) {
 	var errGroup errgroup.Group
 	timeForecastsBuilder := timeforecast.NewTimeForecastsBuilder()
-
 	for _, beach := range beaches {
 		errGroup.Go(
 			func() error {
