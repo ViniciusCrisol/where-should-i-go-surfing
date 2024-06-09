@@ -10,7 +10,7 @@ import (
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/timeforecast"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/mock/app/stormglassclient"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/mock"
 )
 
 func TestBeachForecastService_GetBeachForecasts(t *testing.T) {
@@ -52,12 +52,12 @@ func TestBeachForecastService_GetBeachForecasts(t *testing.T) {
 	}
 
 	var (
-		mockedStormglassClient *stormglassclient.StormglassClient
+		mockedStormglassClient *mock.StormglassClient
 		beachForecastService   *BeachForecastService
 	)
 
 	setup := func() {
-		mockedStormglassClient = &stormglassclient.StormglassClient{}
+		mockedStormglassClient = &mock.StormglassClient{}
 		beachForecastService = NewBeachForecastService(mockedStormglassClient)
 	}
 
@@ -116,7 +116,7 @@ func TestBeachForecastService_GetBeachForecasts(t *testing.T) {
 	t.Run(
 		"It should return an error when stormglass client returns an error", func(t *testing.T) {
 			setup()
-			mockedStormglassClient.On("FetchPoints", beach1.Lat, beach1.Lng).Return(nil, errors.ErrUnsupported)
+			mockedStormglassClient.On("FetchPoints", beach1.Lat, beach1.Lng).Return(nil, errors.New("some error"))
 
 			timeForecasts, err := beachForecastService.GetBeachForecasts([]entity.Beach{beach1})
 

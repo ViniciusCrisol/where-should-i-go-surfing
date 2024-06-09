@@ -12,17 +12,17 @@ import (
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/fixture"
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/mock/infrastructure/httpclient"
+	mock2 "github.com/ViniciusCrisol/where-should-i-go-surfing/test/mock"
 )
 
 func TestStormglassClient_FetchPoints(t *testing.T) {
 	var (
-		mockedHTTPClient *httpclient.HTTPClient
+		mockedHTTPClient *mock2.HTTPClient
 		stormglassClient *StormglassClient
 	)
 
 	setup := func() {
-		mockedHTTPClient = &httpclient.HTTPClient{}
+		mockedHTTPClient = &mock2.HTTPClient{}
 		stormglassClient = NewStormglassClient(mockedHTTPClient, "stormglass_url", "stormglass_token")
 	}
 
@@ -121,7 +121,7 @@ func TestStormglassClient_FetchPoints(t *testing.T) {
 	t.Run(
 		"It should return an error when stormglass request fails", func(t *testing.T) {
 			setup()
-			mockedHTTPClient.On("Do", mock.Anything).Return(nil, errors.ErrUnsupported)
+			mockedHTTPClient.On("Do", mock.Anything).Return(nil, errors.New("some error"))
 
 			points, err := stormglassClient.FetchPoints(100, 100)
 
