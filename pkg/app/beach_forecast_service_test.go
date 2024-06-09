@@ -10,7 +10,7 @@ import (
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/timeforecast"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/mock"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/mocked"
 )
 
 func TestBeachForecastService_GetBeachForecasts(t *testing.T) {
@@ -52,12 +52,12 @@ func TestBeachForecastService_GetBeachForecasts(t *testing.T) {
 	}
 
 	var (
-		mockedStormglassClient *mock.StormglassClient
+		mockedStormglassClient *mocked.StormglassClient
 		beachForecastService   *BeachForecastService
 	)
 
 	setup := func() {
-		mockedStormglassClient = &mock.StormglassClient{}
+		mockedStormglassClient = &mocked.StormglassClient{}
 		beachForecastService = NewBeachForecastService(mockedStormglassClient)
 	}
 

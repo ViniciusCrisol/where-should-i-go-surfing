@@ -12,17 +12,17 @@ import (
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/fixture"
-	mock2 "github.com/ViniciusCrisol/where-should-i-go-surfing/test/mock"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/mocked"
 )
 
 func TestStormglassClient_FetchPoints(t *testing.T) {
 	var (
-		mockedHTTPClient *mock2.HTTPClient
+		mockedHTTPClient *mocked.HTTPClient
 		stormglassClient *StormglassClient
 	)
 
 	setup := func() {
-		mockedHTTPClient = &mock2.HTTPClient{}
+		mockedHTTPClient = &mocked.HTTPClient{}
 		stormglassClient = NewStormglassClient(mockedHTTPClient, "stormglass_url", "stormglass_token")
 	}
 
