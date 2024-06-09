@@ -16,6 +16,7 @@ func TestNewBeach(t *testing.T) {
 			expectedPosition := N
 
 			beach, err := NewBeach(expectedLat, expectedLng, expectedName, expectedPosition)
+
 			assert.NoError(t, err)
 			assert.Equal(t, expectedLat, beach.Lat)
 			assert.Equal(t, expectedLng, beach.Lng)

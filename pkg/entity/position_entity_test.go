@@ -29,8 +29,27 @@ func TestPosition_IsValid(t *testing.T) {
 }
 
 func TestPosition_String(t *testing.T) {
-	assert.Equal(t, "N", N.String())
-	assert.Equal(t, "E", E.String())
-	assert.Equal(t, "S", S.String())
-	assert.Equal(t, "W", W.String())
+	t.Run(
+		`"It should return "N" for North`, func(t *testing.T) {
+			assert.Equal(t, "N", N.String())
+		},
+	)
+
+	t.Run(
+		`"It should return "E" for East`, func(t *testing.T) {
+			assert.Equal(t, "E", E.String())
+		},
+	)
+
+	t.Run(
+		`"It should return "S" for South`, func(t *testing.T) {
+			assert.Equal(t, "S", S.String())
+		},
+	)
+
+	t.Run(
+		`"It should return "W" for West`, func(t *testing.T) {
+			assert.Equal(t, "W", W.String())
+		},
+	)
 }

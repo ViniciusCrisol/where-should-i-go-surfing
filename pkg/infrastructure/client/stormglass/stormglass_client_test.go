@@ -1,6 +1,7 @@
 package stormglass
 
 import (
+	"errors"
 	"net/http"
 	"testing"
 	"time"
@@ -19,6 +20,7 @@ func TestStormglassClient_FetchPoints(t *testing.T) {
 		mockedHTTPClient *httpclient.HTTPClient
 		stormglassClient *StormglassClient
 	)
+
 	setup := func() {
 		mockedHTTPClient = &httpclient.HTTPClient{}
 		stormglassClient = NewStormglassClient(mockedHTTPClient, "stormglass_url", "stormglass_token")
@@ -35,6 +37,7 @@ func TestStormglassClient_FetchPoints(t *testing.T) {
 			mockedHTTPClient.On("Do", mock.Anything).Return(response, nil)
 
 			points, err := stormglassClient.FetchPoints(100, 100)
+
 			assert.NoError(t, err)
 			assert.Equal(
 				t, point.Point{
@@ -67,6 +70,7 @@ func TestStormglassClient_FetchPoints(t *testing.T) {
 			mockedHTTPClient.On("Do", mock.Anything).Return(response, nil)
 
 			points, err := stormglassClient.FetchPoints(100, 100)
+
 			assert.NoError(t, err)
 			assert.Equal(
 				t, point.Point{
@@ -91,6 +95,7 @@ func TestStormglassClient_FetchPoints(t *testing.T) {
 			mockedHTTPClient.On("Do", mock.Anything).Return(response, nil)
 
 			points, err := stormglassClient.FetchPoints(100, 100)
+
 			assert.Error(t, err)
 			assert.Empty(t, points)
 		},
@@ -107,6 +112,7 @@ func TestStormglassClient_FetchPoints(t *testing.T) {
 			mockedHTTPClient.On("Do", mock.Anything).Return(response, nil)
 
 			points, err := stormglassClient.FetchPoints(100, 100)
+
 			assert.Error(t, err)
 			assert.Empty(t, points)
 		},
@@ -115,9 +121,10 @@ func TestStormglassClient_FetchPoints(t *testing.T) {
 	t.Run(
 		"It should return an error when stormglass request fails", func(t *testing.T) {
 			setup()
-			mockedHTTPClient.On("Do", mock.Anything).Return(nil, http.ErrHijacked)
+			mockedHTTPClient.On("Do", mock.Anything).Return(nil, errors.ErrUnsupported)
 
 			points, err := stormglassClient.FetchPoints(100, 100)
+
 			assert.Error(t, err)
 			assert.Empty(t, points)
 		},
