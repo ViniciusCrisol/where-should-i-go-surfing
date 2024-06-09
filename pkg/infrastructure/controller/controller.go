@@ -15,8 +15,8 @@ var (
 	ErrResponseUnsupportedMediaType = ErrResponse{"Unsupported media type, expected application/json"}
 )
 
-func HandleJSON(response http.ResponseWriter, body any, status int) {
-	response.WriteHeader(status)
+func HandleJSON(response http.ResponseWriter, body any, code int) {
+	response.WriteHeader(code)
 	response.Header().Set("X-Content-Type-Options", "nosniff")
 	response.Header().Set("Content-Type", "application/json; charset=utf-8")
 	if err := json.NewEncoder(response).Encode(body); err != nil {
