@@ -5,6 +5,7 @@ import (
 
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity/position"
 )
 
 type BeachForecastController struct {
@@ -23,7 +24,7 @@ func (controller *BeachForecastController) GetUserBeachForecasts(response http.R
 			Lat:      1.1,
 			Lng:      1.1,
 			Name:     "***",
-			Position: entity.N,
+			Position: position.N,
 		},
 	}
 	timeForecasts, err := controller.beachForecastService.GetBeachForecasts(beaches)

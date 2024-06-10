@@ -1,6 +1,10 @@
 package entity
 
-import "errors"
+import (
+	"errors"
+
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity/position"
+)
 
 var (
 	ErrInvalidName     = errors.New("entity: invalid name")
@@ -11,10 +15,10 @@ type Beach struct {
 	Lat      float64
 	Lng      float64
 	Name     string
-	Position Position
+	Position position.Position
 }
 
-func NewBeach(lat, lng float64, name string, position Position) (Beach, error) {
+func NewBeach(lat, lng float64, name string, position position.Position) (Beach, error) {
 	if len(name) < 3 ||
 		len(name) > 64 {
 		return Beach{}, ErrInvalidName

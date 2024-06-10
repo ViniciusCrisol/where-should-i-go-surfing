@@ -10,6 +10,7 @@ import (
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/timeforecast"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity/position"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/mocked"
 )
 
@@ -18,13 +19,13 @@ func TestBeachForecastService_GetBeachForecasts(t *testing.T) {
 		Lat:      1.1,
 		Lng:      1.1,
 		Name:     "***",
-		Position: entity.N,
+		Position: position.N,
 	}
 	beach2 := entity.Beach{
 		Lat:      1.11,
 		Lng:      1.11,
 		Name:     "****",
-		Position: entity.S,
+		Position: position.S,
 	}
 	point1 := point.Point{
 		Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.FixedZone("", 0)),

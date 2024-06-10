@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity/position"
 )
 
 func TestTimeForecastsBuilder(t *testing.T) {
@@ -23,7 +23,7 @@ func TestTimeForecastsBuilder(t *testing.T) {
 				Lat:            1.1,
 				Lng:            1.1,
 				Name:           "***",
-				Position:       entity.N.String(),
+				Position:       position.N.String(),
 				SwellDirection: 64.26, SwellHeight: 0.15, SwellPeriod: 3.89,
 				WaveDirection: 23.38, WaveHeight: 0.47,
 				WindDirection: 29.45, WindSpeed: 10.1,
@@ -33,7 +33,7 @@ func TestTimeForecastsBuilder(t *testing.T) {
 				Lat:            1.11,
 				Lng:            1.11,
 				Name:           "****",
-				Position:       entity.S.String(),
+				Position:       position.S.String(),
 				SwellDirection: 12.4, SwellHeight: 0.21, SwellPeriod: 3.67,
 				WaveDirection: 23.1, WaveHeight: 0.46,
 				WindDirection: 31.4, WindSpeed: 10.1,
@@ -59,7 +59,7 @@ func TestTimeForecastsBuilder(t *testing.T) {
 				Lat:            1.1,
 				Lng:            1.1,
 				Name:           "***",
-				Position:       entity.N.String(),
+				Position:       position.N.String(),
 				SwellDirection: 64.26, SwellHeight: 0.15, SwellPeriod: 3.89,
 				WaveDirection: 23.38, WaveHeight: 0.47,
 				WindDirection: 29.45, WindSpeed: 10.1,
@@ -69,7 +69,7 @@ func TestTimeForecastsBuilder(t *testing.T) {
 				Lat:            1.11,
 				Lng:            1.11,
 				Name:           "****",
-				Position:       entity.S.String(),
+				Position:       position.S.String(),
 				SwellDirection: 12.4, SwellHeight: 0.21, SwellPeriod: 3.67,
 				WaveDirection: 23.1, WaveHeight: 0.46,
 				WindDirection: 31.4, WindSpeed: 10.1,

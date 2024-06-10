@@ -1,4 +1,4 @@
-package entity
+package position
 
 type Position string
 

@@ -15,6 +15,7 @@ import (
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/timeforecast"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity/position"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/infrastructure/client/stormglass"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/fixture"
@@ -26,7 +27,7 @@ func TestBeachForecastController_GetBeachForecasts(t *testing.T) {
 		Lat:      1.1,
 		Lng:      1.1,
 		Name:     "***",
-		Position: entity.N,
+		Position: position.N,
 	}
 	point1 := point.Point{
 		Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.FixedZone("", 0)),

@@ -8,6 +8,7 @@ import (
 
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity/position"
 )
 
 func TestNewBeachForecast(t *testing.T) {
@@ -17,7 +18,7 @@ func TestNewBeachForecast(t *testing.T) {
 				Lat:      1.1,
 				Lng:      1.1,
 				Name:     "***",
-				Position: entity.N,
+				Position: position.N,
 			}
 			point := point.Point{
 				Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.FixedZone("", 0)),

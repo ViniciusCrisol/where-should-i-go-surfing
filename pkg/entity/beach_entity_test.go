@@ -5,6 +5,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity/position"
 )
 
 func TestNewBeach(t *testing.T) {
@@ -13,7 +15,7 @@ func TestNewBeach(t *testing.T) {
 			expectedLat := 100.11
 			expectedLng := 100.11
 			expectedName := "***"
-			expectedPosition := N
+			expectedPosition := position.N
 
 			beach, err := NewBeach(expectedLat, expectedLng, expectedName, expectedPosition)
 
@@ -27,14 +29,14 @@ func TestNewBeach(t *testing.T) {
 
 	t.Run(
 		"It should return an error when the name is too short", func(t *testing.T) {
-			_, err := NewBeach(100, 100, strings.Repeat("*", 2), N)
+			_, err := NewBeach(100, 100, strings.Repeat("*", 2), position.N)
 			assert.Equal(t, ErrInvalidName, err)
 		},
 	)
 
 	t.Run(
 		"It should return an error when the name is too long", func(t *testing.T) {
-			_, err := NewBeach(100, 100, strings.Repeat("*", 65), N)
+			_, err := NewBeach(100, 100, strings.Repeat("*", 65), position.N)
 			assert.Equal(t, ErrInvalidName, err)
 		},
 	)
