@@ -3,7 +3,7 @@ package app
 import (
 	"golang.org/x/sync/errgroup"
 
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/timeforecast"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/dto/timeforecast"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
 )
 
