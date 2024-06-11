@@ -7,8 +7,8 @@ import (
 )
 
 var (
-	ErrInvalidName     = errors.New("entity: invalid name")
-	ErrInvalidPosition = errors.New("entity: invalid position")
+	ErrInvalidBeachName     = errors.New("entity: invalid beach name")
+	ErrInvalidBeachPosition = errors.New("entity: invalid beach position")
 )
 
 type Beach struct {
@@ -21,10 +21,10 @@ type Beach struct {
 func NewBeach(lat, lng float64, name string, position position.Position) (Beach, error) {
 	if len(name) < 3 ||
 		len(name) > 64 {
-		return Beach{}, ErrInvalidName
+		return Beach{}, ErrInvalidBeachName
 	}
 	if !position.IsValid() {
-		return Beach{}, ErrInvalidPosition
+		return Beach{}, ErrInvalidBeachPosition
 	}
 	return Beach{
 		Lat:      lat,
