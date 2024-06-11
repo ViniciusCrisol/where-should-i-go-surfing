@@ -26,17 +26,19 @@ func TestTimeForecastsBuilder(t *testing.T) {
 				Position:       position.N.String(),
 				SwellDirection: 64.26, SwellHeight: 0.15, SwellPeriod: 3.89,
 				WaveDirection: 23.38, WaveHeight: 0.47,
-				WindDirection: 29.45, WindSpeed: 10.1,
+				WindDirection: 19.45, WindSpeed: 10.1,
+				Rating: 1,
 			}
 			expectedForecast2 := BeachForecast{
 				Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.FixedZone("", 0)),
 				Lat:            1.11,
 				Lng:            1.11,
 				Name:           "****",
-				Position:       position.S.String(),
+				Position:       position.N.String(),
 				SwellDirection: 12.4, SwellHeight: 0.21, SwellPeriod: 3.67,
 				WaveDirection: 23.1, WaveHeight: 0.46,
-				WindDirection: 31.4, WindSpeed: 10.1,
+				WindDirection: 131.4, WindSpeed: 10.1,
+				Rating: 2,
 			}
 
 			timeForecast := NewTimeForecastsBuilder().
@@ -62,17 +64,19 @@ func TestTimeForecastsBuilder(t *testing.T) {
 				Position:       position.N.String(),
 				SwellDirection: 64.26, SwellHeight: 0.15, SwellPeriod: 3.89,
 				WaveDirection: 23.38, WaveHeight: 0.47,
-				WindDirection: 29.45, WindSpeed: 10.1,
+				WindDirection: 19.45, WindSpeed: 10.1,
+				Rating: 1,
 			}
 			expectedForecast2 := BeachForecast{
 				Time:           time.Date(2020, 04, 26, 01, 00, 00, 00, time.FixedZone("", 0)),
 				Lat:            1.11,
 				Lng:            1.11,
 				Name:           "****",
-				Position:       position.S.String(),
+				Position:       position.N.String(),
 				SwellDirection: 12.4, SwellHeight: 0.21, SwellPeriod: 3.67,
 				WaveDirection: 23.1, WaveHeight: 0.46,
-				WindDirection: 31.4, WindSpeed: 10.1,
+				WindDirection: 131.4, WindSpeed: 10.1,
+				Rating: 2,
 			}
 
 			timeForecast := NewTimeForecastsBuilder().

@@ -25,7 +25,7 @@ func TestBeachForecastService_GetBeachForecasts(t *testing.T) {
 		Lat:      1.11,
 		Lng:      1.11,
 		Name:     "****",
-		Position: position.S,
+		Position: position.N,
 	}
 	point1 := point.Point{
 		Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.FixedZone("", 0)),
@@ -86,8 +86,8 @@ func TestBeachForecastService_GetBeachForecasts(t *testing.T) {
 			assert.Len(t, timeForecasts[1].Forecasts, 1)
 			assert.Equal(t, point1.Time, timeForecasts[0].Time)
 			assert.Equal(t, point2.Time, timeForecasts[1].Time)
-			assert.Contains(t, timeForecasts[0].Forecasts, timeforecast.NewBeachForecast(beach1, point1))
-			assert.Contains(t, timeForecasts[1].Forecasts, timeforecast.NewBeachForecast(beach1, point2))
+			assert.Contains(t, timeForecasts[0].Forecasts, timeforecast.NewBeachForecast(beach1, point1, 1))
+			assert.Contains(t, timeForecasts[1].Forecasts, timeforecast.NewBeachForecast(beach1, point2, 2))
 		},
 	)
 
@@ -107,10 +107,10 @@ func TestBeachForecastService_GetBeachForecasts(t *testing.T) {
 			assert.Equal(t, point3.Time, timeForecasts[0].Time)
 			assert.Equal(t, point2.Time, timeForecasts[1].Time)
 			assert.Equal(t, point4.Time, timeForecasts[1].Time)
-			assert.Contains(t, timeForecasts[0].Forecasts, timeforecast.NewBeachForecast(beach1, point1))
-			assert.Contains(t, timeForecasts[0].Forecasts, timeforecast.NewBeachForecast(beach2, point3))
-			assert.Contains(t, timeForecasts[1].Forecasts, timeforecast.NewBeachForecast(beach1, point2))
-			assert.Contains(t, timeForecasts[1].Forecasts, timeforecast.NewBeachForecast(beach2, point4))
+			assert.Contains(t, timeForecasts[0].Forecasts, timeforecast.NewBeachForecast(beach1, point1, 1))
+			assert.Contains(t, timeForecasts[0].Forecasts, timeforecast.NewBeachForecast(beach2, point3, 3))
+			assert.Contains(t, timeForecasts[1].Forecasts, timeforecast.NewBeachForecast(beach1, point2, 2))
+			assert.Contains(t, timeForecasts[1].Forecasts, timeforecast.NewBeachForecast(beach2, point4, 4))
 		},
 	)
 

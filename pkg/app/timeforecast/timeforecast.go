@@ -25,9 +25,10 @@ type BeachForecast struct {
 	WaveHeight     float64   `json:"wave_height"`
 	WindDirection  float64   `json:"wind_direction"`
 	WindSpeed      float64   `json:"wind_speed"`
+	Rating         int       `json:"rating"`
 }
 
-func NewBeachForecast(beach entity.Beach, point point.Point) BeachForecast {
+func NewBeachForecast(beach entity.Beach, point point.Point, rating int) BeachForecast {
 	return BeachForecast{
 		Time:           point.Time,
 		Lat:            beach.Lat,
@@ -41,5 +42,6 @@ func NewBeachForecast(beach entity.Beach, point point.Point) BeachForecast {
 		WaveHeight:     point.WaveHeight,
 		WindDirection:  point.WindDirection,
 		WindSpeed:      point.WindSpeed,
+		Rating:         rating,
 	}
 }

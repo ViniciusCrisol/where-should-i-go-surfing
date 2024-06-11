@@ -27,7 +27,7 @@ func TestNewBeachForecast(t *testing.T) {
 				WindDirection: 19.45, WindSpeed: 10.1,
 			}
 
-			beachForecast := NewBeachForecast(beach, point)
+			beachForecast := NewBeachForecast(beach, point, 5)
 
 			assert.Equal(t, point.Time, beachForecast.Time)
 			assert.Equal(t, beach.Lat, beachForecast.Lat)
@@ -41,6 +41,7 @@ func TestNewBeachForecast(t *testing.T) {
 			assert.Equal(t, point.WaveHeight, beachForecast.WaveHeight)
 			assert.Equal(t, point.WindDirection, beachForecast.WindDirection)
 			assert.Equal(t, point.WindSpeed, beachForecast.WindSpeed)
+			assert.Equal(t, 5, beachForecast.Rating)
 		},
 	)
 }

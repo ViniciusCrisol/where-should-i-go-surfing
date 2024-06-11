@@ -27,8 +27,12 @@ func (service *BeachForecastService) GetBeachForecasts(beaches []entity.Beach) (
 				if err != nil {
 					return err
 				}
+				ratingService := NewRatingService(beach)
 				for _, point := range points {
-					timeForecastsBuilder.BeachForecast(point.Time, timeforecast.NewBeachForecast(beach, point))
+					timeForecastsBuilder.BeachForecast(
+						point.Time,
+						timeforecast.NewBeachForecast(beach, point, ratingService.GetRating(point)),
+					)
 				}
 				return nil
 			},

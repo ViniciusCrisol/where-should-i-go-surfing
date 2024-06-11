@@ -72,8 +72,8 @@ func TestBeachForecastController_GetBeachForecasts(t *testing.T) {
 			mockedHTTPClient.On("Do", mock.Anything).Return(stormglassResponse, nil)
 			expectedJSONResponse, _ := json.Marshal(
 				timeforecast.NewTimeForecastsBuilder().
-					BeachForecast(point1.Time, timeforecast.NewBeachForecast(beach, point1)).
-					BeachForecast(point2.Time, timeforecast.NewBeachForecast(beach, point2)).
+					BeachForecast(point1.Time, timeforecast.NewBeachForecast(beach, point1, 1)).
+					BeachForecast(point2.Time, timeforecast.NewBeachForecast(beach, point2, 2)).
 					Build(),
 			)
 
