@@ -8,13 +8,13 @@ const (
 		            "time": "2020-04-26T00:00:00+00:00",
 		            "swellDirection": {"noaa": 64.26}, "swellHeight": {"noaa": 0.15}, "swellPeriod": {"noaa": 3.89},
 		            "waveDirection": {"noaa": 23.38}, "waveHeight": {"noaa": 0.47},
-		            "windDirection": {"noaa": 29.45}, "windSpeed": {"noaa": 10.1}
+		            "windDirection": {"noaa": 19.45}, "windSpeed": {"noaa": 10.1}
 		        },
 		        {
 		            "time": "2020-04-26T01:00:00+00:00",
 		            "swellDirection": {"noaa": 12.4}, "swellHeight": {"noaa": 0.21}, "swellPeriod": {"noaa": 3.67},
 		            "waveDirection": {"noaa": 23.1}, "waveHeight": {"noaa": 0.46}, 
-		            "windDirection": {"noaa": 31.4}, "windSpeed": {"noaa": 10.1}
+		            "windDirection": {"noaa": 131.4}, "windSpeed": {"noaa": 10.1}
 		        }
 		    ],
 		    "meta": {
@@ -42,7 +42,7 @@ const (
 		            "time": "2020-04-26T00:00:00+00:00",
 		            "swellDirection": {"noaa": 64.26}, "swellHeight": {"noaa": 0.15}, "swellPeriod": {"noaa": 3.89},
 		            "waveDirection": {"noaa": 23.38}, "waveHeight": {"noaa": 0.47},
-		            "windDirection": {"noaa": 29.45}, "windSpeed": {"noaa": 10.1}
+		            "windDirection": {"noaa": 19.45}, "windSpeed": {"noaa": 10.1}
 		        },
 		        {
 		            "time": "2020-04-26T01:00:00+00:00",

@@ -1,6 +1,7 @@
 package app
 
 import (
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity/position"
 )
@@ -15,25 +16,47 @@ func NewRatingService(beach entity.Beach) *RatingService {
 	}
 }
 
-func (service *RatingService) GetRatingBasedOnWindAndWavePositions(windPosition, wavePosition position.Position) int {
-	if service.isWindOnshore(windPosition, wavePosition) {
+func (service *RatingService) GetRating(point point.Point) int {
+	windDirection := service.GetPositionFromLocation(point.WindDirection)
+	waveDirection := service.GetPositionFromLocation(point.WaveDirection)
+	windAndWaveRating := service.GetRatingBasedOnWindAndWaveDirections(windDirection, waveDirection)
+	swellPeriodRating := service.GetRatingBasedOnSwellPeriod(point.SwellPeriod)
+	swellHeightRating := service.GetRatingBasedOnSwellHeight(point.SwellHeight)
+	return (windAndWaveRating + swellPeriodRating + swellHeightRating) / 3
+}
+
+func (service *RatingService) GetPositionFromLocation(location float64) position.Position {
+	if (location >= 0 && location < 50) || location >= 310 {
+		return position.N
+	}
+	if location >= 50 && location < 120 {
+		return position.E
+	}
+	if location >= 120 && location < 220 {
+		return position.S
+	}
+	return position.W
+}
+
+func (service *RatingService) GetRatingBasedOnWindAndWaveDirections(windDirection, waveDirection position.Position) int {
+	if service.isWindOnshore(windDirection, waveDirection) {
 		return 1
 	}
-	if service.isWindOffshore(windPosition, wavePosition) {
+	if service.isWindOffshore(windDirection, waveDirection) {
 		return 5
 	}
 	return 3
 }
 
-func (service *RatingService) isWindOnshore(windPosition, wavePosition position.Position) bool {
-	return windPosition == wavePosition
+func (service *RatingService) isWindOnshore(windDirection, waveDirection position.Position) bool {
+	return windDirection == waveDirection
 }
 
-func (service *RatingService) isWindOffshore(windPosition, wavePosition position.Position) bool {
-	return (service.beach.Position == position.N && wavePosition == position.N && windPosition == position.S) ||
-		(service.beach.Position == position.S && wavePosition == position.S && windPosition == position.N) ||
-		(service.beach.Position == position.E && wavePosition == position.E && windPosition == position.W) ||
-		(service.beach.Position == position.W && wavePosition == position.W && windPosition == position.E)
+func (service *RatingService) isWindOffshore(windDirection, waveDirection position.Position) bool {
+	return (service.beach.Position == position.N && waveDirection == position.N && windDirection == position.S) ||
+		(service.beach.Position == position.S && waveDirection == position.S && windDirection == position.N) ||
+		(service.beach.Position == position.E && waveDirection == position.E && windDirection == position.W) ||
+		(service.beach.Position == position.W && waveDirection == position.W && windDirection == position.E)
 }
 
 func (service *RatingService) GetRatingBasedOnSwellPeriod(period float64) int {
@@ -60,17 +83,4 @@ func (service *RatingService) GetRatingBasedOnSwellHeight(height float64) int {
 		return 3
 	}
 	return 5
-}
-
-func (service *RatingService) GetPositionFromLocation(location float64) position.Position {
-	if (location >= 0 && location < 50) || location >= 310 {
-		return position.N
-	}
-	if location >= 50 && location < 120 {
-		return position.E
-	}
-	if location >= 120 && location < 220 {
-		return position.S
-	}
-	return position.W
 }

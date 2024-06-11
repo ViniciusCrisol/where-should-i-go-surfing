@@ -24,7 +24,7 @@ func TestNewBeachForecast(t *testing.T) {
 				Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.FixedZone("", 0)),
 				SwellDirection: 64.26, SwellHeight: 0.15, SwellPeriod: 3.89,
 				WaveDirection: 23.38, WaveHeight: 0.47,
-				WindDirection: 29.45, WindSpeed: 10.1,
+				WindDirection: 19.45, WindSpeed: 10.1,
 			}
 
 			beachForecast := NewBeachForecast(beach, point)
