@@ -1,7 +1,7 @@
 package app
 
 import (
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/dto/point"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity/position"
 )

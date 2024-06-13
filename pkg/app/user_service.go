@@ -3,11 +3,10 @@ package app
 import (
 	"errors"
 
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/dto/cmd"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
 )
 
-var ErrEmailAlreadyInUse = errors.New("service: email already in use")
+var ErrEmailIsAlreadyInUse = errors.New("service: email already in use")
 
 type UserService struct {
 	userDAO UserDAO
@@ -19,12 +18,14 @@ func NewUserService(userDAO UserDAO) *UserService {
 	}
 }
 
-func (service *UserService) CreateUser(createUserCmd cmd.CreateUserCmd) error {
-	user, err := entity.NewUser(
-		createUserCmd.Name,
-		createUserCmd.Email,
-		createUserCmd.Password,
-	)
+type CreateUserCmd struct {
+	Name     string
+	Email    string
+	Password string
+}
+
+func (service *UserService) CreateUser(cmd CreateUserCmd) error {
+	user, err := entity.NewUser(cmd.Name, cmd.Email, cmd.Password)
 	if err != nil {
 		return err
 	}
@@ -33,7 +34,7 @@ func (service *UserService) CreateUser(createUserCmd cmd.CreateUserCmd) error {
 		return err
 	}
 	if found {
-		return ErrEmailAlreadyInUse
+		return ErrEmailIsAlreadyInUse
 	}
 	return service.userDAO.Save(user)
 }

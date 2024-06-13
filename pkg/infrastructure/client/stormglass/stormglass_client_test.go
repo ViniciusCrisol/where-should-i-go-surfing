@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/dto/point"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/fixture"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/mocked"
@@ -96,8 +96,8 @@ func TestStormglassClient_FetchPoints(t *testing.T) {
 
 			points, err := stormglassClient.FetchPoints(100, 100)
 
-			assert.Error(t, err)
 			assert.Empty(t, points)
+			assert.Equal(t, ErrInvalidResponse, err)
 		},
 	)
 

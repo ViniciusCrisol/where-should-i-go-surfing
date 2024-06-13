@@ -5,25 +5,25 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/dto/point"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity/position"
 )
 
-var ratingService *RatingService
-
-func setup() {
-	ratingService = NewRatingService(
-		entity.Beach{
-			Lat:      1.1,
-			Lng:      1.1,
-			Name:     "***",
-			Position: position.N,
-		},
-	)
-}
-
 func TestRatingService_GetRating(t *testing.T) {
+	var ratingService *RatingService
+
+	setup := func() {
+		ratingService = NewRatingService(
+			entity.Beach{
+				Lat:      1.1,
+				Lng:      1.1,
+				Name:     "***",
+				Position: position.N,
+			},
+		)
+	}
+
 	t.Run(
 		"It should return 1 for a terrible point", func(t *testing.T) {
 			setup()
@@ -101,6 +101,19 @@ func TestRatingService_GetRating(t *testing.T) {
 }
 
 func TestRatingService_GetPositionFromLocation(t *testing.T) {
+	var ratingService *RatingService
+
+	setup := func() {
+		ratingService = NewRatingService(
+			entity.Beach{
+				Lat:      1.1,
+				Lng:      1.1,
+				Name:     "***",
+				Position: position.N,
+			},
+		)
+	}
+
 	t.Run(
 		`"It should return "N" for a location of 0 degrees`, func(t *testing.T) {
 			setup()
@@ -131,6 +144,19 @@ func TestRatingService_GetPositionFromLocation(t *testing.T) {
 }
 
 func TestRatingService_GetRatingBasedOnWindAndWaveDirections(t *testing.T) {
+	var ratingService *RatingService
+
+	setup := func() {
+		ratingService = NewRatingService(
+			entity.Beach{
+				Lat:      1.1,
+				Lng:      1.1,
+				Name:     "***",
+				Position: position.N,
+			},
+		)
+	}
+
 	t.Run(
 		"It should return 1 for a beach with onshore winds", func(t *testing.T) {
 			setup()
@@ -154,6 +180,19 @@ func TestRatingService_GetRatingBasedOnWindAndWaveDirections(t *testing.T) {
 }
 
 func TestRatingService_GetRatingBasedOnSwellPeriod(t *testing.T) {
+	var ratingService *RatingService
+
+	setup := func() {
+		ratingService = NewRatingService(
+			entity.Beach{
+				Lat:      1.1,
+				Lng:      1.1,
+				Name:     "***",
+				Position: position.N,
+			},
+		)
+	}
+
 	t.Run(
 		"It should return 1 for a period of 6 seconds", func(t *testing.T) {
 			setup()
@@ -184,6 +223,19 @@ func TestRatingService_GetRatingBasedOnSwellPeriod(t *testing.T) {
 }
 
 func TestRatingService_GetRatingBasedOnSwellHeight(t *testing.T) {
+	var ratingService *RatingService
+
+	setup := func() {
+		ratingService = NewRatingService(
+			entity.Beach{
+				Lat:      1.1,
+				Lng:      1.1,
+				Name:     "***",
+				Position: position.N,
+			},
+		)
+	}
+
 	t.Run(
 		"It should return 1 for a height of 0.2 meters", func(t *testing.T) {
 			setup()

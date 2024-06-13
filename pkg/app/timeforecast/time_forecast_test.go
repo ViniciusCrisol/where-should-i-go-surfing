@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/dto/point"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity/position"
 )

@@ -7,8 +7,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/dto/point"
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/dto/timeforecast"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/timeforecast"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity/position"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/mocked"
