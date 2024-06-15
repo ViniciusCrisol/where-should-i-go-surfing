@@ -2,6 +2,7 @@ package controller
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
@@ -19,12 +20,16 @@ func NewBeachForecastController(beachForecastService *app.BeachForecastService) 
 }
 
 func (controller *BeachForecastController) GetUserBeachForecasts(response http.ResponseWriter, request *http.Request) {
+	now := time.Now()
 	beaches := []entity.Beach{
 		{
-			Lat:      1.1,
-			Lng:      1.1,
-			Name:     "***",
-			Position: position.N,
+			ID:        "1",
+			Lat:       1.1,
+			Lng:       1.1,
+			Name:      "Manly",
+			Position:  position.N,
+			CreatedAt: now,
+			UpdatedAt: now,
 		},
 	}
 	timeForecasts, err := controller.beachForecastService.GetBeachForecasts(beaches)

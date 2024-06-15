@@ -2,6 +2,7 @@ package app
 
 import (
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 
@@ -14,12 +15,16 @@ func TestRatingService_GetRating(t *testing.T) {
 	var ratingService *RatingService
 
 	setup := func() {
+		now := time.Now()
 		ratingService = NewRatingService(
 			entity.Beach{
-				Lat:      1.1,
-				Lng:      1.1,
-				Name:     "***",
-				Position: position.N,
+				ID:        "1",
+				Lat:       1.1,
+				Lng:       1.1,
+				Name:      "Manly",
+				Position:  position.N,
+				CreatedAt: now,
+				UpdatedAt: now,
 			},
 		)
 	}
@@ -104,12 +109,16 @@ func TestRatingService_GetPositionFromLocation(t *testing.T) {
 	var ratingService *RatingService
 
 	setup := func() {
+		now := time.Now()
 		ratingService = NewRatingService(
 			entity.Beach{
-				Lat:      1.1,
-				Lng:      1.1,
-				Name:     "***",
-				Position: position.N,
+				ID:        "1",
+				Lat:       1.1,
+				Lng:       1.1,
+				Name:      "Manly",
+				Position:  position.N,
+				CreatedAt: now,
+				UpdatedAt: now,
 			},
 		)
 	}
@@ -147,12 +156,16 @@ func TestRatingService_GetRatingBasedOnWindAndWaveDirections(t *testing.T) {
 	var ratingService *RatingService
 
 	setup := func() {
+		now := time.Now()
 		ratingService = NewRatingService(
 			entity.Beach{
-				Lat:      1.1,
-				Lng:      1.1,
-				Name:     "***",
-				Position: position.N,
+				ID:        "1",
+				Lat:       1.1,
+				Lng:       1.1,
+				Name:      "Manly",
+				Position:  position.N,
+				CreatedAt: now,
+				UpdatedAt: now,
 			},
 		)
 	}
@@ -183,12 +196,16 @@ func TestRatingService_GetRatingBasedOnSwellPeriod(t *testing.T) {
 	var ratingService *RatingService
 
 	setup := func() {
+		now := time.Now()
 		ratingService = NewRatingService(
 			entity.Beach{
-				Lat:      1.1,
-				Lng:      1.1,
-				Name:     "***",
-				Position: position.N,
+				ID:        "1",
+				Lat:       1.1,
+				Lng:       1.1,
+				Name:      "Manly",
+				Position:  position.N,
+				CreatedAt: now,
+				UpdatedAt: now,
 			},
 		)
 	}
@@ -226,12 +243,16 @@ func TestRatingService_GetRatingBasedOnSwellHeight(t *testing.T) {
 	var ratingService *RatingService
 
 	setup := func() {
+		now := time.Now()
 		ratingService = NewRatingService(
 			entity.Beach{
-				Lat:      1.1,
-				Lng:      1.1,
-				Name:     "***",
-				Position: position.N,
+				ID:        "1",
+				Lat:       1.1,
+				Lng:       1.1,
+				Name:      "Manly",
+				Position:  position.N,
+				CreatedAt: now,
+				UpdatedAt: now,
 			},
 		)
 	}

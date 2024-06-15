@@ -2,6 +2,9 @@ package entity
 
 import (
 	"errors"
+	"time"
+
+	"github.com/google/uuid"
 
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity/position"
 )
@@ -12,10 +15,13 @@ var (
 )
 
 type Beach struct {
-	Lat      float64
-	Lng      float64
-	Name     string
-	Position position.Position
+	ID        string
+	Lat       float64
+	Lng       float64
+	Name      string
+	Position  position.Position
+	CreatedAt time.Time
+	UpdatedAt time.Time
 }
 
 func NewBeach(lat, lng float64, name string, position position.Position) (Beach, error) {
@@ -26,10 +32,15 @@ func NewBeach(lat, lng float64, name string, position position.Position) (Beach,
 	if !position.IsValid() {
 		return Beach{}, ErrInvalidBeachPosition
 	}
+	now := time.Now()
+	uuid := uuid.NewString()
 	return Beach{
-		Lat:      lat,
-		Lng:      lng,
-		Name:     name,
-		Position: position,
+		ID:        uuid,
+		Lat:       lat,
+		Lng:       lng,
+		Name:      name,
+		Position:  position,
+		CreatedAt: now,
+		UpdatedAt: now,
 	}, nil
 }

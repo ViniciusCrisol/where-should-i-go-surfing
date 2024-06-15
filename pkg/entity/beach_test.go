@@ -14,16 +14,19 @@ func TestNewBeach(t *testing.T) {
 		"It should return a beach", func(t *testing.T) {
 			expectedLat := 100.11
 			expectedLng := 100.11
-			expectedName := "***"
+			expectedName := "Manly"
 			expectedPosition := position.N
 
 			beach, err := NewBeach(expectedLat, expectedLng, expectedName, expectedPosition)
 
 			assert.NoError(t, err)
+			assert.NotEmpty(t, beach.ID)
 			assert.Equal(t, expectedLat, beach.Lat)
 			assert.Equal(t, expectedLng, beach.Lng)
 			assert.Equal(t, expectedName, beach.Name)
 			assert.Equal(t, expectedPosition, beach.Position)
+			assert.NotZero(t, beach.CreatedAt)
+			assert.NotZero(t, beach.UpdatedAt)
 		},
 	)
 

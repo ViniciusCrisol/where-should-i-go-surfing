@@ -14,11 +14,15 @@ import (
 func TestNewBeachForecast(t *testing.T) {
 	t.Run(
 		"It should return a new BeachForecast with correct values", func(t *testing.T) {
+			now := time.Now()
 			beach := entity.Beach{
-				Lat:      1.1,
-				Lng:      1.1,
-				Name:     "***",
-				Position: position.N,
+				ID:        "1",
+				Lat:       1.1,
+				Lng:       1.1,
+				Name:      "Manly",
+				Position:  position.N,
+				CreatedAt: now,
+				UpdatedAt: now,
 			}
 			point := point.Point{
 				Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.FixedZone("", 0)),
