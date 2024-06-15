@@ -10,7 +10,7 @@ import (
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/helper/bcrypt"
 )
 
-var EmailRegex = regexp.MustCompile(`^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$`)
+var emailRegex = regexp.MustCompile(`^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$`)
 
 var (
 	ErrInvalidUserName     = errors.New("entity: invalid user name")
@@ -34,7 +34,7 @@ func NewUser(name, email, password string) (User, error) {
 	}
 	if len(email) < 3 ||
 		len(email) > 256 ||
-		!EmailRegex.MatchString(email) {
+		!emailRegex.MatchString(email) {
 		return User{}, ErrInvalidUserEmail
 	}
 	if len(password) < 6 ||
