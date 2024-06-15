@@ -33,9 +33,8 @@ func NewBeach(lat, lng float64, name string, position position.Position) (Beach,
 		return Beach{}, ErrInvalidBeachPosition
 	}
 	now := time.Now()
-	uuid := uuid.NewString()
 	return Beach{
-		ID:        uuid,
+		ID:        uuid.NewString(),
 		Lat:       lat,
 		Lng:       lng,
 		Name:      name,

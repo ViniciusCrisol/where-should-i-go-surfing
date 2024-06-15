@@ -46,9 +46,8 @@ func NewUser(name, email, password string) (User, error) {
 		return User{}, err
 	}
 	now := time.Now()
-	uuid := uuid.NewString()
 	return User{
-		ID:        uuid,
+		ID:        uuid.NewString(),
 		Name:      name,
 		Email:     email,
 		Password:  hashedPassword,
