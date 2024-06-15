@@ -19,7 +19,7 @@ func NewBeachForecastController(beachForecastService *app.BeachForecastService) 
 	}
 }
 
-func (controller *BeachForecastController) GetUserBeachForecasts(response http.ResponseWriter, request *http.Request) {
+func (controller *BeachForecastController) GetUserBeachForecasts(response http.ResponseWriter, _ *http.Request) {
 	now := time.Now()
 	beaches := []entity.Beach{
 		{
