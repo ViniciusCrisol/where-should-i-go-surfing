@@ -10,9 +10,9 @@ import (
 	"github.com/stretchr/testify/mock"
 
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/app/point"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/infrastructure/httpclient/mocked"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/fixture"
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/mocked"
 )
 
 func TestStormglassClient_FetchPoints(t *testing.T) {

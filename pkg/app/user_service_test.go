@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/mock"
 
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/mocked"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/infrastructure/persistence/mocked"
 )
 
 func TestUserService_CreateUser(t *testing.T) {

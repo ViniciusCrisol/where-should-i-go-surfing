@@ -17,9 +17,9 @@ import (
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/entity/position"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/infrastructure/client/stormglass"
+	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/infrastructure/httpclient/mocked"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test"
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/fixture"
-	"github.com/ViniciusCrisol/where-should-i-go-surfing/test/mocked"
 )
 
 func TestBeachForecastController_GetBeachForecasts(t *testing.T) {
