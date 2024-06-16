@@ -23,5 +23,5 @@ func TestInit(t *testing.T) {
 
 	assert.Contains(t, string(out), `"msg":"INFO"`)
 	assert.Contains(t, string(out), `"level":"INFO"`)
-	assert.Contains(t, string(out), "where-should-i-go-surfing/pkg/helper/logger/logger_test.go:18")
+	assert.Contains(t, string(out), "pkg/helper/logger/logger_test.go:18")
 }
