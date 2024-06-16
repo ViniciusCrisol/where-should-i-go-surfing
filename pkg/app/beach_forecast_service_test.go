@@ -35,25 +35,25 @@ func TestBeachForecastService_GetBeachForecasts(t *testing.T) {
 		UpdatedAt: now,
 	}
 	point1 := point.Point{
-		Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.FixedZone("", 0)),
+		Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.UTC),
 		SwellDirection: 64.26, SwellHeight: 0.15, SwellPeriod: 3.89,
 		WaveDirection: 23.38, WaveHeight: 0.47,
 		WindDirection: 19.45, WindSpeed: 10.1,
 	}
 	point2 := point.Point{
-		Time:           time.Date(2020, 04, 26, 01, 00, 00, 00, time.FixedZone("", 0)),
+		Time:           time.Date(2020, 04, 26, 01, 00, 00, 00, time.UTC),
 		SwellDirection: 12.4, SwellHeight: 0.21, SwellPeriod: 3.67,
 		WaveDirection: 23.1, WaveHeight: 0.46,
 		WindDirection: 131.4, WindSpeed: 10.1,
 	}
 	point3 := point.Point{
-		Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.FixedZone("", 0)),
+		Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.UTC),
 		SwellDirection: 12.4, SwellHeight: 0.31, SwellPeriod: 7.67,
 		WaveDirection: 23.1, WaveHeight: 0.46,
 		WindDirection: 131.4, WindSpeed: 10.1,
 	}
 	point4 := point.Point{
-		Time:           time.Date(2020, 04, 26, 01, 00, 00, 00, time.FixedZone("", 0)),
+		Time:           time.Date(2020, 04, 26, 01, 00, 00, 00, time.UTC),
 		SwellDirection: 12.4, SwellHeight: 0.31, SwellPeriod: 17.67,
 		WaveDirection: 23.1, WaveHeight: 0.46,
 		WindDirection: 131.4, WindSpeed: 10.1,

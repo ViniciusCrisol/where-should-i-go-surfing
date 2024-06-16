@@ -19,7 +19,7 @@ func TestTimeForecastsBuilder(t *testing.T) {
 	t.Run(
 		"It should add multiple forecasts with the same time", func(t *testing.T) {
 			expectedForecast1 := BeachForecast{
-				Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.FixedZone("", 0)),
+				Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.UTC),
 				Lat:            1.1,
 				Lng:            1.1,
 				Name:           "Manly",
@@ -30,7 +30,7 @@ func TestTimeForecastsBuilder(t *testing.T) {
 				Rating: 1,
 			}
 			expectedForecast2 := BeachForecast{
-				Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.FixedZone("", 0)),
+				Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.UTC),
 				Lat:            1.11,
 				Lng:            1.11,
 				Name:           "Angourie",
@@ -57,7 +57,7 @@ func TestTimeForecastsBuilder(t *testing.T) {
 	t.Run(
 		"It should add multiple forecasts with different times", func(t *testing.T) {
 			expectedForecast1 := BeachForecast{
-				Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.FixedZone("", 0)),
+				Time:           time.Date(2020, 04, 26, 00, 00, 00, 00, time.UTC),
 				Lat:            1.1,
 				Lng:            1.1,
 				Name:           "Manly",
@@ -68,7 +68,7 @@ func TestTimeForecastsBuilder(t *testing.T) {
 				Rating: 1,
 			}
 			expectedForecast2 := BeachForecast{
-				Time:           time.Date(2020, 04, 26, 01, 00, 00, 00, time.FixedZone("", 0)),
+				Time:           time.Date(2020, 04, 26, 01, 00, 00, 00, time.UTC),
 				Lat:            1.11,
 				Lng:            1.11,
 				Name:           "Angourie",
