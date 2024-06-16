@@ -34,17 +34,13 @@ func (dao *UserDAO) Save(user entity.User) error {
 	return nil
 }
 
-func (dao *UserDAO) FindByEmail(email string) (entity.User, bool, error) {
+func (dao *UserDAO) FindByID(id string) (entity.User, bool, error) {
 	row := dao.db.QueryRow(
-		"SELECT id, name, email, password, created_at, updated_at FROM users WHERE email = $1;",
-		email,
+		"SELECT id, name, email, password, created_at, updated_at FROM users WHERE id = $1;",
+		id,
 	)
 	if err := row.Err(); err != nil {
-		slog.Error(
-			"Failed to execute query",
-			slog.String("err", err.Error()),
-			slog.String("user_email", email),
-		)
+		slog.Error("Failed to execute query", slog.String("err", err.Error()), slog.String("user_id", id))
 		return entity.User{}, false, err
 	}
 	var user entity.User
@@ -57,11 +53,34 @@ func (dao *UserDAO) FindByEmail(email string) (entity.User, bool, error) {
 		&user.UpdatedAt,
 	); err != nil {
 		if !errors.Is(err, sql.ErrNoRows) {
-			slog.Error(
-				"Failed to scan row",
-				slog.String("err", err.Error()),
-				slog.String("user_email", email),
-			)
+			slog.Error("Failed to scan row", slog.String("err", err.Error()), slog.String("user_id", id))
+			return entity.User{}, false, err
+		}
+		return entity.User{}, false, nil
+	}
+	return user, true, nil
+}
+
+func (dao *UserDAO) FindByEmail(email string) (entity.User, bool, error) {
+	row := dao.db.QueryRow(
+		"SELECT id, name, email, password, created_at, updated_at FROM users WHERE email = $1;",
+		email,
+	)
+	if err := row.Err(); err != nil {
+		slog.Error("Failed to execute query", slog.String("err", err.Error()), slog.String("user_email", email))
+		return entity.User{}, false, err
+	}
+	var user entity.User
+	if err := row.Scan(
+		&user.ID,
+		&user.Name,
+		&user.Email,
+		&user.Password,
+		&user.CreatedAt,
+		&user.UpdatedAt,
+	); err != nil {
+		if !errors.Is(err, sql.ErrNoRows) {
+			slog.Error("Failed to scan row", slog.String("err", err.Error()), slog.String("user_email", email))
 			return entity.User{}, false, err
 		}
 		return entity.User{}, false, nil

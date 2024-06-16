@@ -11,5 +11,6 @@ type StormglassClient interface {
 
 type UserDAO interface {
 	Save(user entity.User) error
+	FindByID(id string) (entity.User, bool, error)
 	FindByEmail(email string) (entity.User, bool, error)
 }

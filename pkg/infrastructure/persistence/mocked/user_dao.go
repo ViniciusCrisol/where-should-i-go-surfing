@@ -48,6 +48,41 @@ func (_m *UserDAO) FindByEmail(email string) (entity.User, bool, error) {
 	return r0, r1, r2
 }
 
+// FindByID provides a mock function with given fields: id
+func (_m *UserDAO) FindByID(id string) (entity.User, bool, error) {
+	ret := _m.Called(id)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FindByID")
+	}
+
+	var r0 entity.User
+	var r1 bool
+	var r2 error
+	if rf, ok := ret.Get(0).(func(string) (entity.User, bool, error)); ok {
+		return rf(id)
+	}
+	if rf, ok := ret.Get(0).(func(string) entity.User); ok {
+		r0 = rf(id)
+	} else {
+		r0 = ret.Get(0).(entity.User)
+	}
+
+	if rf, ok := ret.Get(1).(func(string) bool); ok {
+		r1 = rf(id)
+	} else {
+		r1 = ret.Get(1).(bool)
+	}
+
+	if rf, ok := ret.Get(2).(func(string) error); ok {
+		r2 = rf(id)
+	} else {
+		r2 = ret.Error(2)
+	}
+
+	return r0, r1, r2
+}
+
 // Save provides a mock function with given fields: user
 func (_m *UserDAO) Save(user entity.User) error {
 	ret := _m.Called(user)
