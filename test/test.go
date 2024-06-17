@@ -16,11 +16,8 @@ func SetupDB() {
 	if err = db.Ping(); err != nil {
 		panic(err)
 	}
-	DB = db
-}
-
-func ResetDB() {
-	if _, err := DB.Exec("TRUNCATE TABLE users;"); err != nil {
+	if _, err = db.Exec("TRUNCATE TABLE users;"); err != nil {
 		panic(err)
 	}
+	DB = db
 }

@@ -8,12 +8,8 @@ import (
 )
 
 func TestNewUser(t *testing.T) {
-	t.Parallel()
-
 	t.Run(
 		"It should return a user", func(t *testing.T) {
-			t.Parallel()
-
 			expectedName := "John Doe"
 			expectedEmail := "john.doe@email.com"
 			expectedPassword := "123456"

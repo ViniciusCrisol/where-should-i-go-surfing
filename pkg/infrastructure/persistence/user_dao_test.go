@@ -26,7 +26,6 @@ func TestUserDAO_Save(t *testing.T) {
 	t.Run(
 		"It should successfully create a new user when email is not in use", func(t *testing.T) {
 			setup()
-			defer test.ResetDB()
 
 			err := userDAO.Save(user)
 
@@ -44,7 +43,6 @@ func TestUserDAO_Save(t *testing.T) {
 	t.Run(
 		"It should return an error when the user email is already in use", func(t *testing.T) {
 			setup()
-			defer test.ResetDB()
 
 			assert.NoError(t, userDAO.Save(user))
 			assert.Error(t, userDAO.Save(user))
@@ -77,7 +75,6 @@ func TestUserDAO_FindByID(t *testing.T) {
 	t.Run(
 		"It should return a user when the user exists", func(t *testing.T) {
 			setup()
-			defer test.ResetDB()
 
 			assert.NoError(t, userDAO.Save(user))
 
@@ -96,7 +93,6 @@ func TestUserDAO_FindByID(t *testing.T) {
 	t.Run(
 		"It should return false when the user does not exist", func(t *testing.T) {
 			setup()
-			defer test.ResetDB()
 
 			storedUser, found, err := userDAO.FindByID(user.ID)
 
@@ -136,7 +132,6 @@ func TestUserDAO_FindByEmail(t *testing.T) {
 	t.Run(
 		"It should return a user when the user exists", func(t *testing.T) {
 			setup()
-			defer test.ResetDB()
 
 			assert.NoError(t, userDAO.Save(user))
 
@@ -155,7 +150,6 @@ func TestUserDAO_FindByEmail(t *testing.T) {
 	t.Run(
 		"It should return false when the user does not exist", func(t *testing.T) {
 			setup()
-			defer test.ResetDB()
 
 			storedUser, found, err := userDAO.FindByEmail(user.Email)
 

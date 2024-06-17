@@ -35,7 +35,6 @@ func TestUserController_CreateUser(t *testing.T) {
 	t.Run(
 		"It should create a new user successfully when the email is not in use", func(t *testing.T) {
 			setup()
-			defer test.ResetDB()
 
 			response, _ := http.Post(httpServer.URL, "application/json", strings.NewReader(requestBody))
 
@@ -47,7 +46,6 @@ func TestUserController_CreateUser(t *testing.T) {
 	t.Run(
 		"It should return an error when the email is already in use", func(t *testing.T) {
 			setup()
-			defer test.ResetDB()
 
 			http.Post(httpServer.URL, "application/json", strings.NewReader(requestBody))
 			response, _ := http.Post(httpServer.URL, "application/json", strings.NewReader(requestBody))
@@ -72,7 +70,6 @@ func TestUserController_CreateUser(t *testing.T) {
 	t.Run(
 		"It should return an error when the Content-Type header is not application/json", func(t *testing.T) {
 			setup()
-			defer test.ResetDB()
 
 			response, _ := http.Post(httpServer.URL, "application/xml", strings.NewReader(requestBody))
 
@@ -84,7 +81,6 @@ func TestUserController_CreateUser(t *testing.T) {
 	t.Run(
 		"It should return an error if the request body unmarshal fails", func(t *testing.T) {
 			setup()
-			defer test.ResetDB()
 
 			response, _ := http.Post(
 				httpServer.URL,
