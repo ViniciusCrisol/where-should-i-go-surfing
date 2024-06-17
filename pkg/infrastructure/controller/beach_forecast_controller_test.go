@@ -47,9 +47,8 @@ func TestBeachForecastController_GetBeachForecasts(t *testing.T) {
 	}
 
 	var (
-		httpServer              *httptest.Server
-		mockedHTTPClient        *mocked.HTTPClient
-		beachForecastController *BeachForecastController
+		httpServer       *httptest.Server
+		mockedHTTPClient *mocked.HTTPClient
 	)
 
 	setup := func() {
@@ -60,7 +59,7 @@ func TestBeachForecastController_GetBeachForecasts(t *testing.T) {
 			"stormglass_token",
 		)
 		beachForecastService := app.NewBeachForecastService(stormglassClient)
-		beachForecastController = NewBeachForecastController(beachForecastService)
+		beachForecastController := NewBeachForecastController(beachForecastService)
 		httpServer = httptest.NewServer(http.HandlerFunc(beachForecastController.GetUserBeachForecasts))
 	}
 
