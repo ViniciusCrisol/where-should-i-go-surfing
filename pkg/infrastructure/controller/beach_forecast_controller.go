@@ -34,7 +34,7 @@ func (controller *BeachForecastController) GetUserBeachForecasts(response http.R
 	}
 	timeForecasts, err := controller.beachForecastService.GetBeachForecasts(beaches)
 	if err != nil {
-		HandleJSON(response, ErrResponseInternalServerError, http.StatusInternalServerError)
+		HandleErr(response, err)
 		return
 	}
 	HandleJSON(response, timeForecasts, http.StatusOK)

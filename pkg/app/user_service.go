@@ -19,9 +19,9 @@ func NewUserService(userDAO UserDAO) *UserService {
 }
 
 type CreateUserCmd struct {
-	Name     string
-	Email    string
-	Password string
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
 
 func (service *UserService) CreateUser(cmd CreateUserCmd) error {
