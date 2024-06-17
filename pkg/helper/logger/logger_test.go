@@ -10,7 +10,7 @@ import (
 )
 
 func TestInit(t *testing.T) {
-	rescueStdout := os.Stdout
+	originalStdout := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
 
@@ -19,7 +19,7 @@ func TestInit(t *testing.T) {
 
 	w.Close()
 	out, _ := io.ReadAll(r)
-	os.Stdout = rescueStdout
+	os.Stdout = originalStdout
 
 	assert.Contains(t, string(out), `"msg":"INFO"`)
 	assert.Contains(t, string(out), `"level":"INFO"`)
