@@ -75,3 +75,19 @@ func TestNewUser(t *testing.T) {
 		},
 	)
 }
+
+func TestUser_ComparePassword(t *testing.T) {
+	user, _ := NewUser("John Doe", "john.doe@email.com", "123456")
+
+	t.Run(
+		"It should return true for a correct user password and password combination", func(t *testing.T) {
+			assert.True(t, user.ComparePassword("123456"))
+		},
+	)
+
+	t.Run(
+		"It should return false for an incorrect user password and password combination", func(t *testing.T) {
+			assert.False(t, user.ComparePassword("1234567"))
+		},
+	)
+}

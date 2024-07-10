@@ -55,3 +55,10 @@ func NewUser(name, email, password string) (User, error) {
 		UpdatedAt: now,
 	}, nil
 }
+
+func (user *User) ComparePassword(password string) bool {
+	return bcrypt.Compare(
+		user.Password,
+		password,
+	)
+}
