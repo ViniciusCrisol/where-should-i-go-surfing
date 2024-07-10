@@ -32,20 +32,20 @@ func TestCompare(t *testing.T) {
 		"It should return true for a correct plain text and hash combination", func(t *testing.T) {
 			plain := "123456"
 			hashed, _ := Hash(plain)
-			assert.True(t, Compare(plain, hashed))
+			assert.True(t, Compare(hashed, plain))
 		},
 	)
 
 	t.Run(
 		"It should return false for an incorrect plain text and hash combination", func(t *testing.T) {
 			hashedText, _ := Hash("123456")
-			assert.False(t, Compare("1234567", hashedText))
+			assert.False(t, Compare(hashedText, "1234567"))
 		},
 	)
 
 	t.Run(
 		"It should handle invalid hash formats gracefully", func(t *testing.T) {
-			assert.False(t, Compare("123456", "invalid hash format"))
+			assert.False(t, Compare("invalid hash format", "123456"))
 		},
 	)
 }
