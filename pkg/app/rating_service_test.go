@@ -124,28 +124,28 @@ func TestRatingService_GetPositionFromLocation(t *testing.T) {
 	}
 
 	t.Run(
-		`"It should return "N" for a location of 0 degrees`, func(t *testing.T) {
+		`It should return "N" for a location of 0 degrees`, func(t *testing.T) {
 			setup()
 			assert.Equal(t, position.N, ratingService.GetPositionFromLocation(0))
 		},
 	)
 
 	t.Run(
-		`"It should return "E" for a location of 119 degrees`, func(t *testing.T) {
+		`It should return "E" for a location of 119 degrees`, func(t *testing.T) {
 			setup()
 			assert.Equal(t, position.E, ratingService.GetPositionFromLocation(119))
 		},
 	)
 
 	t.Run(
-		`"It should return "S" for a location of 219 degrees`, func(t *testing.T) {
+		`It should return "S" for a location of 219 degrees`, func(t *testing.T) {
 			setup()
 			assert.Equal(t, position.S, ratingService.GetPositionFromLocation(219))
 		},
 	)
 
 	t.Run(
-		`"It should return "W" for a location of 309 degrees`, func(t *testing.T) {
+		`It should return "W" for a location of 309 degrees`, func(t *testing.T) {
 			setup()
 			assert.Equal(t, position.W, ratingService.GetPositionFromLocation(309))
 		},
