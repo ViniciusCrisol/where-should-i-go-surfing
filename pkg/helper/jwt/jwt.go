@@ -7,21 +7,41 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
-func CreateToken(id string) (string, error) {
+const signKey = "TODO: Change it for an env var!"
+
+func SignToken[T any](data T) (string, error) {
 	token, err := jwt.NewWithClaims(
 		jwt.SigningMethodHS256,
 		jwt.MapClaims{
-			"id":  id,
-			"exp": time.Now().Add(time.Hour).Unix(),
+			"data": data,
+			"exp":  time.Now().Add(time.Hour).Unix(),
 		},
-	).SignedString("TODO: Change it for an env var!")
+	).SignedString(signKey)
 	if err != nil {
-		slog.Error("Failed to sign token", slog.String("err", err.Error()), slog.String("id", id))
+		slog.Error("Failed to sign token", slog.String("err", err.Error()), slog.Any("data", data))
 		return "", err
 	}
 	return token, nil
 }
 
-func VerifyToken(token string) error {
-	return nil
+func ParseToken[T any](token string) (*T, bool) {
+	jwtToken, err := jwt.Parse(token, func(*jwt.Token) (any, error) { return signKey, nil })
+	if err != nil {
+		return nil, false
+	}
+	if !jwtToken.Valid {
+		return nil, false
+	}
+
+	claims, parsed := jwtToken.Claims.(jwt.MapClaims)
+	if !parsed {
+		slog.Error("Failed to parse claims", slog.String("token", token))
+		return nil, false
+	}
+	data, parsed := claims["data"].(T)
+	if !parsed {
+		slog.Error("Failed to parse data", slog.String("token", token))
+		return nil, false
+	}
+	return &data, true
 }
