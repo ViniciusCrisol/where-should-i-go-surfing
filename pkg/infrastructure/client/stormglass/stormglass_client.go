@@ -14,7 +14,7 @@ import (
 	"github.com/ViniciusCrisol/where-should-i-go-surfing/pkg/infrastructure/httpclient"
 )
 
-var ErrInvalidResponse = errors.New("stormglass: invalid response")
+var ErrInvalidResponse = errors.New("invalid response")
 
 type StormglassClient struct {
 	httpClient       httpclient.HTTPClient

@@ -15,8 +15,8 @@ type ErrResponse struct {
 }
 
 var (
-	ErrResponseInternalServerError  = ErrResponse{"Internal server error"}
-	ErrResponseUnsupportedMediaType = ErrResponse{"Unsupported media type, expected application/json"}
+	ErrResponseInternalServerError  = ErrResponse{"internal server error"}
+	ErrResponseUnsupportedMediaType = ErrResponse{"unsupported media type, expected application/json"}
 )
 
 func HandleErr(response http.ResponseWriter, err error) {
@@ -25,26 +25,17 @@ func HandleErr(response http.ResponseWriter, err error) {
 		return
 	}
 	if errors.Is(err, app.ErrAuthenticationFailed) {
+		HandleJSON(response, ErrResponse{err.Error()}, http.StatusUnauthorized)
+		return
+	}
+	if errors.Is(err, entity.ErrInvalidBeachName) ||
+		errors.Is(err, entity.ErrInvalidBeachPosition) {
 		HandleJSON(response, ErrResponse{err.Error()}, http.StatusBadRequest)
 		return
 	}
-	if errors.Is(err, entity.ErrInvalidBeachName) {
-		HandleJSON(response, ErrResponse{err.Error()}, http.StatusBadRequest)
-		return
-	}
-	if errors.Is(err, entity.ErrInvalidBeachPosition) {
-		HandleJSON(response, ErrResponse{err.Error()}, http.StatusBadRequest)
-		return
-	}
-	if errors.Is(err, entity.ErrInvalidUserName) {
-		HandleJSON(response, ErrResponse{err.Error()}, http.StatusBadRequest)
-		return
-	}
-	if errors.Is(err, entity.ErrInvalidUserEmail) {
-		HandleJSON(response, ErrResponse{err.Error()}, http.StatusBadRequest)
-		return
-	}
-	if errors.Is(err, entity.ErrInvalidUserPassword) {
+	if errors.Is(err, entity.ErrInvalidUserName) ||
+		errors.Is(err, entity.ErrInvalidUserEmail) ||
+		errors.Is(err, entity.ErrInvalidUserPassword) {
 		HandleJSON(response, ErrResponse{err.Error()}, http.StatusBadRequest)
 		return
 	}

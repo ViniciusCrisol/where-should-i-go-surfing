@@ -10,8 +10,8 @@ import (
 )
 
 var (
-	ErrInvalidBeachName     = errors.New("entity: invalid beach name")
-	ErrInvalidBeachPosition = errors.New("entity: invalid beach position")
+	ErrInvalidBeachName     = errors.New("invalid beach name")
+	ErrInvalidBeachPosition = errors.New("invalid beach position")
 )
 
 type Beach struct {

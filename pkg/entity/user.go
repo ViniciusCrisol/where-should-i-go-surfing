@@ -13,9 +13,9 @@ import (
 var emailRegex = regexp.MustCompile(`^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$`)
 
 var (
-	ErrInvalidUserName     = errors.New("entity: invalid user name")
-	ErrInvalidUserEmail    = errors.New("entity: invalid user email")
-	ErrInvalidUserPassword = errors.New("entity: invalid user password")
+	ErrInvalidUserName     = errors.New("invalid user name")
+	ErrInvalidUserEmail    = errors.New("invalid user email")
+	ErrInvalidUserPassword = errors.New("invalid user password")
 )
 
 type User struct {

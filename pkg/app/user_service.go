@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	ErrEmailIsAlreadyInUse  = errors.New("service: email already in use")
-	ErrAuthenticationFailed = errors.New("service: authentication failed")
+	ErrEmailIsAlreadyInUse  = errors.New("email already in use")
+	ErrAuthenticationFailed = errors.New("authentication failed")
 )
 
 type UserService struct {

@@ -113,7 +113,7 @@ func TestUserController_AuthenticateUser(t *testing.T) {
 	}
 
 	t.Run(
-		"It should authenticate an user successfully when the email/password combination is valid", func(t *testing.T) {
+		"It should authenticate a user successfully with a valid email/password combination", func(t *testing.T) {
 			setup()
 
 			response, _ := http.Post(httpServer.URL, "application/json", strings.NewReader(requestBody))
@@ -124,7 +124,7 @@ func TestUserController_AuthenticateUser(t *testing.T) {
 	)
 
 	t.Run(
-		"It should return an error when the email does not match", func(t *testing.T) {
+		"It should return an error when the email does not match any user", func(t *testing.T) {
 			setup()
 
 			response, _ := http.Post(
@@ -133,7 +133,7 @@ func TestUserController_AuthenticateUser(t *testing.T) {
 				strings.NewReader(`{"email": "john_doe@email.com", "password": "123456"}`),
 			)
 
-			assert.Equal(t, http.StatusBadRequest, response.StatusCode)
+			assert.Equal(t, http.StatusUnauthorized, response.StatusCode)
 			assert.Equal(t, ErrResponse{app.ErrAuthenticationFailed.Error()}, GetErrResponseResponseBody(response))
 		},
 	)
@@ -148,7 +148,7 @@ func TestUserController_AuthenticateUser(t *testing.T) {
 				strings.NewReader(`{"email": "john.doe@email.com", "password": "1234567"}`),
 			)
 
-			assert.Equal(t, http.StatusBadRequest, response.StatusCode)
+			assert.Equal(t, http.StatusUnauthorized, response.StatusCode)
 			assert.Equal(t, ErrResponse{app.ErrAuthenticationFailed.Error()}, GetErrResponseResponseBody(response))
 		},
 	)

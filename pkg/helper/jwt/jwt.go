@@ -50,12 +50,12 @@ func ParseToken[T any](token string) (*T, bool) {
 		return nil, false
 	}
 	buff := new(bytes.Buffer)
-	if err := json.NewEncoder(buff).Encode(claims["data"]); err != nil {
+	if err = json.NewEncoder(buff).Encode(claims["data"]); err != nil {
 		slog.Error("Failed to encode claims", slog.String("token", token))
 		return nil, false
 	}
 	var data T
-	if err := json.NewDecoder(buff).Decode(&data); err != nil {
+	if err = json.NewDecoder(buff).Decode(&data); err != nil {
 		slog.Error("Failed to decode data", slog.String("token", token))
 		return nil, false
 	}
