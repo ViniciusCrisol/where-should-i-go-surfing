@@ -33,3 +33,21 @@ func (controller *UserController) CreateUser(response http.ResponseWriter, reque
 	}
 	response.WriteHeader(http.StatusCreated)
 }
+
+func (controller *UserController) AuthenticateUser(response http.ResponseWriter, request *http.Request) {
+	if request.Header.Get("Content-Type") != "application/json" {
+		HandleJSON(response, ErrResponseUnsupportedMediaType, http.StatusUnsupportedMediaType)
+		return
+	}
+	var cmd app.AuthenticateUserCmd
+	if err := json.NewDecoder(request.Body).Decode(&cmd); err != nil {
+		HandleJSON(response, ErrResponseUnsupportedMediaType, http.StatusUnsupportedMediaType)
+		return
+	}
+	token, err := controller.userService.AuthenticateUser(cmd)
+	if err != nil {
+		HandleErr(response, err)
+		return
+	}
+	HandleJSON(response, map[string]string{"token": token}, 200)
+}

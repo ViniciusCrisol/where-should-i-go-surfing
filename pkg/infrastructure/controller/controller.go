@@ -24,6 +24,10 @@ func HandleErr(response http.ResponseWriter, err error) {
 		HandleJSON(response, ErrResponse{err.Error()}, http.StatusBadRequest)
 		return
 	}
+	if errors.Is(err, app.ErrAuthenticationFailed) {
+		HandleJSON(response, ErrResponse{err.Error()}, http.StatusBadRequest)
+		return
+	}
 	if errors.Is(err, entity.ErrInvalidBeachName) {
 		HandleJSON(response, ErrResponse{err.Error()}, http.StatusBadRequest)
 		return

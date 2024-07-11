@@ -39,11 +39,11 @@ func ParseToken[T any](token string) (*T, bool) {
 		return nil, false
 	}
 
-	// It's important to cast the data to JSON here because the "data" field within the claims is
-	// stored as a generic any type. To convert this generic type back into the original struct type T,
-	// we need to serialize it to JSON and then deserialize it into the desired type. This ensures that
-	// we correctly preserve the structure and types of the original data, avoiding potential type assertion
-	// errors and maintaining the integrity of the data.
+	// It's important to cast the data to JSON here because the "data" field within the claims is stored
+	// as a generic any type. To convert this generic type back into the original struct type T, we need
+	// to serialize it to JSON and then deserialize it into the desired type. This ensures that we
+	// correctly preserve the structure and types of the original data, avoiding potential type
+	// assertion errors and maintaining the integrity of the data.
 	claims, parsed := jwtToken.Claims.(jwt.MapClaims)
 	if !parsed {
 		slog.Error("Failed to parse claims", slog.String("token", token))
